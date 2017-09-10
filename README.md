@@ -1,10 +1,10 @@
 # Validate phone numbers with Laravel 5
-[![Latest Version](https://img.shields.io/github/release/laravel-valiation-rules/us-phone.svg?style=flat-square)](https://github.com/laravel-valiation-rules/us-phone/releases)
+[![Latest Version](https://img.shields.io/github/release/laravel-validation-rules/us-phone.svg?style=flat-square)](https://github.com/laravel-validation-rules/us-phone/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://travis-ci.org/laravel-valiation-rules/us-phone.svg?branch=master)](https://travis-ci.org/laravel-valiation-rules/us-phone)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/laravel-valiation-rules/us-phone/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/laravel-valiation-rules/us-phone/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/laravel-valiation-rules/us-phone/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/laravel-valiation-rules/us-phone/?branch=master)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel-valiation-rules/us-phone.svg?style=flat-square)](https://packagist.org/packages/laravel-valiation-rules/us-phone)
+[![Build Status](https://travis-ci.org/laravel-validation-rules/us-phone.svg?branch=master)](https://travis-ci.org/laravel-validation-rules/us-phone)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/laravel-validation-rules/us-phone/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/laravel-validation-rules/us-phone/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/laravel-validation-rules/us-phone/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/laravel-validation-rules/us-phone/?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/laravel-validation-rules/us-phone.svg?style=flat-square)](https://packagist.org/packages/laravel-validation-rules/us-phone)
 
 This package only checks phone number formatting and not actual number validity.
 
@@ -12,7 +12,7 @@ This package only checks phone number formatting and not actual number validity.
 
 Install via [composer](https://getcomposer.org/) - In the terminal:
 ```bash
-composer require laravel-valiation-rules/us-phone
+composer require laravel-validation-rules/us-phone
 ```
 
 Now add the following to the `providers` array in your `config/app.php`
