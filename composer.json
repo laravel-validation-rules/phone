@@ -1,0 +1,40 @@
+{
+    "name": "laravel-validation-rules/us-phone",
+    "description": "Validate that a phone number is in the correct format",
+    "keywords": [
+        "laravel",
+        "validator",
+        "phone",
+        "tylercd100"
+    ],
+    "homepage": "https://github.com/laravel-validation-rules/us-phone",
+    "license": "MIT",  
+    "authors": [
+        {
+            "name": "Tyler Arbon",
+            "email": "tylercd100@gmail.com"
+        }
+    ],
+    "autoload":{
+        "psr-4":{
+            "LVR\\Phone\\":"src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LVR\\Phone\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",  
+    "require": {
+        "illuminate/validation": "^5.0",
+        "illuminate/support": "^5.0",
+        "php": "^5.5.9|^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8|^5.0",
+        "orchestra/testbench": "^3.2"
+    },
+    "suggest": {
+    }
+}
