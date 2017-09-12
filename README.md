@@ -1,39 +1,50 @@
-# Validate phone numbers with Laravel 5
-[![Latest Version](https://img.shields.io/github/release/laravel-validation-rules/us-phone.svg?style=flat-square)](https://github.com/laravel-validation-rules/us-phone/releases)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://travis-ci.org/laravel-validation-rules/us-phone.svg?branch=master)](https://travis-ci.org/laravel-validation-rules/us-phone)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/laravel-validation-rules/us-phone/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/laravel-validation-rules/us-phone/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/laravel-validation-rules/us-phone/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/laravel-validation-rules/us-phone/?branch=master)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel-validation-rules/us-phone.svg?style=flat-square)](https://packagist.org/packages/laravel-validation-rules/us-phone)
+# Phone
 
-This package only checks phone number formatting and not actual number validity.
+Validates phone number format.
+
+<p >
+  <a href="https://travis-ci.org/laravel-validation-rules/us-phone">
+    <img src="https://img.shields.io/travis/laravel-validation-rules/us-phone.svg?style=flat-square">
+  </a>
+  <a href="https://scrutinizer-ci.com/g/laravel-validation-rules/us-phone/code-structure/master/code-coverage">
+    <img src="https://img.shields.io/scrutinizer/coverage/g/laravel-validation-rules/us-phone.svg?style=flat-square">
+  </a>
+  <a href="https://scrutinizer-ci.com/g/laravel-validation-rules/us-phone">
+    <img src="https://img.shields.io/scrutinizer/g/laravel-validation-rules/us-phone.svg?style=flat-square">
+  </a>
+  <a href="https://github.com/laravel-validation-rules/us-phone/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/laravel-validation-rules/us-phone.svg?style=flat-square">
+  </a>
+  <a href="https://twitter.com/clarkeash">
+    <img src="http://img.shields.io/badge/author-@clarkeash-blue.svg?style=flat-square">
+  </a>
+</p>
 
 ## Installation
 
-Install via [composer](https://getcomposer.org/) - In the terminal:
 ```bash
 composer require laravel-validation-rules/us-phone
-```
-
-Now add the following to the `providers` array in your `config/app.php`
-```php
-LVR\Phone\ServiceProvider::class
 ```
 
 ## Usage
 
 ```php
+use LVR\Phone\Phone;
+use LVR\Phone\E164;
+use LVR\Phone\NANP;
+use LVR\Phone\Digits;
+
 // Test any phone number
-Validator::make(['test' => '15556667777'], ['test' => 'phone']); //true
-Validator::make(['test' => '+15556667777'], ['test' => 'phone']); //true
-Validator::make(['test' => '+1 (555) 666-7777'], ['test' => 'phone']); //true
+$request->validate(['test' => '15556667777'], new Phone); //true
+$request->validate(['test' => '+15556667777'], new Phone); //true
+$request->validate(['test' => '+1 (555) 666-7777'], new Phone); //true
 
 // Test for E164
-Validator::make(['test' => '+15556667777'], ['test' => 'phone:E164']); //true
+$request->validate(['test' => '+15556667777'], ['test' => new E164]); //true
 
 // Test for NANP (North American Numbering Plan)
-Validator::make(['test' => '+1 (555) 666-7777'], ['test' => 'phone:NANP']); //true
+$request->validate(['test' => '+1 (555) 666-7777'], ['test' => new NANP); //true
 
 // Test for digits only
-Validator::make(['test' => '15556667777'], ['test' => 'phone:digits']); //true
+$request->validate(['test' => '15556667777'], ['test' => new Digits]); //true
 ```
