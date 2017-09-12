@@ -1,12 +1,31 @@
 <?php
-
 namespace LVR\Phone;
 
-class Validator
+use Illuminate\Contracts\Validation\Rule;
+
+class Phone implements Rule
 {
-    public function __call($a, $b)
+    /**
+     * Determine if the validation rule passes.
+     *
+     * @param  string $attribute
+     * @param  mixed  $value
+     *
+     * @return bool
+     */
+    public function passes($attribute, $value)
     {
-        return empty($b[0]) || $this->{$a}($b[0]);
+        return $this->isPhone($value);
+    }
+
+    /**
+     * Get the validation error message.
+     *
+     * @return string
+     */
+    public function message()
+    {
+        return 'Incorrect phone format for :attribute.';
     }
 
     /**
