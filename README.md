@@ -15,8 +15,8 @@ Validates phone number format.
   <a href="https://github.com/laravel-validation-rules/us-phone/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/laravel-validation-rules/us-phone.svg?style=flat-square">
   </a>
-  <a href="https://twitter.com/clarkeash">
-    <img src="http://img.shields.io/badge/author-@clarkeash-blue.svg?style=flat-square">
+  <a href="https://twitter.com/tylercd100">
+    <img src="http://img.shields.io/badge/author-@tylercd100-blue.svg?style=flat-square">
   </a>
 </p>
 
