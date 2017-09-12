@@ -75,7 +75,16 @@ class ValidatorTest extends TestCase
 
     public function testValidatorErrorMessage()
     {
+        $validator = Validator::make(['attr' => '+1555 ex 1234'], ['attr' => new Phone]);
+        $this->assertEquals("Incorrect phone format for attr.", $validator->errors()->first());
+
         $validator = Validator::make(['attr' => '+1555 ex 1234'], ['attr' => new E164]);
         $this->assertEquals("attr must be in E.164 phone format", $validator->errors()->first());
+
+        $validator = Validator::make(['attr' => '+1555 ex 1234'], ['attr' => new NANP]);
+        $this->assertEquals("attr must be in the NANP phone format", $validator->errors()->first());
+
+        $validator = Validator::make(['attr' => '+1555 ex 1234'], ['attr' => new Digits]);
+        $this->assertEquals("attr must be in digits only phone format", $validator->errors()->first());
     }
 }
