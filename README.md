@@ -35,16 +35,16 @@ use LVR\Phone\NANP;
 use LVR\Phone\Digits;
 
 // Test any phone number
-$request->validate(['test' => '15556667777'], new Phone); //true
-$request->validate(['test' => '+15556667777'], new Phone); //true
-$request->validate(['test' => '+1 (555) 666-7777'], new Phone); //true
+$request->validate(['test' => '15556667777'], new Phone); // Pass!
+$request->validate(['test' => '+15556667777'], new Phone); // Pass!
+$request->validate(['test' => '+1 (555) 666-7777'], new Phone); // Pass!
 
 // Test for E164
-$request->validate(['test' => '+15556667777'], ['test' => new E164]); //true
+$request->validate(['test' => '+15556667777'], ['test' => new E164]); // Pass!
 
 // Test for NANP (North American Numbering Plan)
-$request->validate(['test' => '+1 (555) 666-7777'], ['test' => new NANP); //true
+$request->validate(['test' => '+1 (555) 666-7777'], ['test' => new NANP); // Pass!
 
 // Test for digits only
-$request->validate(['test' => '15556667777'], ['test' => new Digits]); //true
+$request->validate(['test' => '15556667777'], ['test' => new Digits]); // Pass!
 ```
