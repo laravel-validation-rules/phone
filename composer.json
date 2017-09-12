@@ -8,7 +8,7 @@
         "tylercd100"
     ],
     "homepage": "https://github.com/laravel-validation-rules/us-phone",
-    "license": "MIT",  
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "Tyler Arbon",
