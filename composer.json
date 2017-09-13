@@ -1,5 +1,5 @@
 {
-    "name": "laravel-validation-rules/us-phone",
+    "name": "laravel-validation-rules/phone",
     "description": "Validate that a phone number is in the correct format",
     "keywords": [
         "laravel",
@@ -7,7 +7,7 @@
         "phone",
         "tylercd100"
     ],
-    "homepage": "https://github.com/laravel-validation-rules/us-phone",
+    "homepage": "https://github.com/laravel-validation-rules/phone",
     "license": "Apache-2.0",
     "authors": [
         {
