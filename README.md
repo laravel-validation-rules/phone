@@ -3,17 +3,17 @@
 Validates phone number format.
 
 <p >
-  <a href="https://travis-ci.org/laravel-validation-rules/us-phone">
-    <img src="https://img.shields.io/travis/laravel-validation-rules/us-phone.svg?style=flat-square">
+  <a href="https://travis-ci.org/laravel-validation-rules/phone">
+    <img src="https://img.shields.io/travis/laravel-validation-rules/phone.svg?style=flat-square">
   </a>
-  <a href="https://scrutinizer-ci.com/g/laravel-validation-rules/us-phone/code-structure/master/code-coverage">
-    <img src="https://img.shields.io/scrutinizer/coverage/g/laravel-validation-rules/us-phone.svg?style=flat-square">
+  <a href="https://scrutinizer-ci.com/g/laravel-validation-rules/phone/code-structure/master/code-coverage">
+    <img src="https://img.shields.io/scrutinizer/coverage/g/laravel-validation-rules/phone.svg?style=flat-square">
   </a>
-  <a href="https://scrutinizer-ci.com/g/laravel-validation-rules/us-phone">
-    <img src="https://img.shields.io/scrutinizer/g/laravel-validation-rules/us-phone.svg?style=flat-square">
+  <a href="https://scrutinizer-ci.com/g/laravel-validation-rules/phone">
+    <img src="https://img.shields.io/scrutinizer/g/laravel-validation-rules/phone.svg?style=flat-square">
   </a>
-  <a href="https://github.com/laravel-validation-rules/us-phone/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/laravel-validation-rules/us-phone.svg?style=flat-square">
+  <a href="https://github.com/laravel-validation-rules/phone/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/laravel-validation-rules/phone.svg?style=flat-square">
   </a>
   <a href="https://twitter.com/tylercd100">
     <img src="http://img.shields.io/badge/author-@tylercd100-blue.svg?style=flat-square">
@@ -23,7 +23,7 @@ Validates phone number format.
 ## Installation
 
 ```bash
-composer require laravel-validation-rules/us-phone
+composer require laravel-validation-rules/phone
 ```
 
 ## Usage
