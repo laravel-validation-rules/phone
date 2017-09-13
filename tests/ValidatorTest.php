@@ -6,7 +6,8 @@ use Exception;
 use LVR\Phone\Digits;
 use LVR\Phone\E164;
 use LVR\Phone\NANP;
-use LVR\Phone\Phone;
+use LVR\Phone\NTNP;
+use LVR\Phone\Base as Phone;
 use Validator;
 
 class ValidatorTest extends TestCase
@@ -16,13 +17,7 @@ class ValidatorTest extends TestCase
         return !(Validator::make(['attr' => $number], ['attr' => $rule])->fails());
     }
 
-    public function testValidatorPhone()
-    {
-        $this->assertEquals(true, $this->validate('+15556667777', new Phone));
-        $this->assertEquals(true, $this->validate('(555) 666-7777', new Phone));
-        $this->assertEquals(true, $this->validate('5556667777', new Phone));
-    }
-
+    // Digits
     public function testValidatorPhoneDigits()
     {
         $this->assertEquals(false, $this->validate('+15556667777', new Digits));
@@ -31,6 +26,7 @@ class ValidatorTest extends TestCase
         $this->assertEquals(true, $this->validate('15556667777', new Digits));
     }
 
+    // E164
     public function testValidatorPhoneE164()
     {
         $this->assertEquals(true, $this->validate('+15556660000', new E164));
@@ -47,6 +43,7 @@ class ValidatorTest extends TestCase
         $this->assertEquals(false, $this->validate('+zabcdefghij', new E164));
     }
 
+    // NANP
     public function testValidatorPhoneNANP()
     {
         $this->assertEquals(true, $this->validate('+1 (555) 666-7777', new NANP));
@@ -73,11 +70,33 @@ class ValidatorTest extends TestCase
         $this->assertEquals(false, $this->validate('+zabcdefghij', new NANP));
     }
 
+    public function testValidatorPhoneNTNP()
+    {
+        $this->assertTrue($this->validate("+44 (020) 0000 0000", new NTNP));
+        $this->assertTrue($this->validate("+44 020 0000 0000", new NTNP));
+        $this->assertTrue($this->validate("(020) 0000 0000", new NTNP));
+        $this->assertTrue($this->validate("(024) 7000 0000", new NTNP));
+        $this->assertTrue($this->validate("(029) 0000 0000", new NTNP));
+        $this->assertTrue($this->validate("(0113) 000 0000", new NTNP));
+        $this->assertTrue($this->validate("(0114) 000 0000", new NTNP));
+        $this->assertTrue($this->validate("(0121) 000 0000", new NTNP));
+        $this->assertTrue($this->validate("(0117) 000 0000", new NTNP));
+        $this->assertTrue($this->validate("(0131) 000 0000", new NTNP));
+        $this->assertTrue($this->validate("(0141) 000 0000", new NTNP));
+        $this->assertTrue($this->validate("(0161) 000 0000", new NTNP));
+        $this->assertTrue($this->validate("(01223) 000000", new NTNP));
+        $this->assertTrue($this->validate("(01382) 000000", new NTNP));
+        $this->assertTrue($this->validate("(01386) 000000", new NTNP));
+        $this->assertTrue($this->validate("(01935) 000000", new NTNP));
+        $this->assertTrue($this->validate("(01865) 000000", new NTNP));
+        $this->assertTrue($this->validate("(01792) 000000", new NTNP));
+        $this->assertTrue($this->validate("(01204) 00000", new NTNP));
+        $this->assertTrue($this->validate("(0153 96) 00000", new NTNP));
+        $this->assertTrue($this->validate("(0169 77) 0000", new NTNP));
+    }
+
     public function testValidatorErrorMessage()
     {
-        $validator = Validator::make(['attr' => '+1555 ex 1234'], ['attr' => new Phone]);
-        $this->assertEquals("Incorrect phone format for attr.", $validator->errors()->first());
-
         $validator = Validator::make(['attr' => '+1555 ex 1234'], ['attr' => new E164]);
         $this->assertEquals("attr must be in E.164 phone format", $validator->errors()->first());
 
