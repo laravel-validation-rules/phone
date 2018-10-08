@@ -4,6 +4,7 @@ namespace LVR\Phone\Tests;
 
 use Exception;
 use LVR\Phone\Digits;
+use LVR\Phone\E123;
 use LVR\Phone\E164;
 use LVR\Phone\NANP;
 use LVR\Phone\Phone;
@@ -21,6 +22,7 @@ class ValidatorTest extends TestCase
         $this->assertEquals(true, $this->validate('+15556667777', new Phone));
         $this->assertEquals(true, $this->validate('(555) 666-7777', new Phone));
         $this->assertEquals(true, $this->validate('5556667777', new Phone));
+        $this->assertEquals(true, $this->validate('+22 555 666 7777', new Phone));
     }
 
     public function testValidatorPhoneDigits()
@@ -29,6 +31,14 @@ class ValidatorTest extends TestCase
         $this->assertEquals(false, $this->validate('(555) 666-7777', new Digits));
         $this->assertEquals(true, $this->validate('5556667777', new Digits));
         $this->assertEquals(true, $this->validate('15556667777', new Digits));
+    }
+
+    public function testValidatorPhoneE123()
+    {
+        $this->assertEquals(true, $this->validate('(607) 555 1234', new E123));
+        $this->assertEquals(true, $this->validate('(022607) 555 1234', new E123));
+        $this->assertEquals(true, $this->validate('+22 555 555 1234', new E123));
+        $this->assertEquals(false, $this->validate('+22 555 555 1234 ext 567', new E123));
     }
 
     public function testValidatorPhoneE164()

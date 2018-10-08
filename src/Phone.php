@@ -36,7 +36,7 @@ class Phone implements Rule
      */
     protected function isPhone($value)
     {
-        return $this->isE164($value) || $this->isNANP($value) || $this->isDigits($value);
+        return $this->isE123($value) || $this->isE164($value) || $this->isNANP($value) || $this->isDigits($value);
     }
 
     /**
@@ -51,6 +51,16 @@ class Phone implements Rule
         $conditions[] = strlen($value) <= 16;
         $conditions[] = preg_match("/[^\d]/i", $value) === 0;
         return (bool) array_product($conditions);
+    }
+
+    /**
+     * Format example +22 555 555 1234, (607) 555 1234, (022607) 555 1234
+     * @param $value
+     * @return bool
+     */
+    protected function isE123($value)
+    {
+        return preg_match('/^(?:\((\+?\d+)?\)|\+?\d+) ?\d*(-?\d{2,3} ?){0,4}$/', $value) === 1;
     }
 
     /**
