@@ -30,6 +30,7 @@ composer require laravel-validation-rules/phone
 
 ```php
 use LVR\Phone\Phone;
+use LVR\Phone\E123;
 use LVR\Phone\E164;
 use LVR\Phone\NANP;
 use LVR\Phone\Digits;
@@ -38,6 +39,9 @@ use LVR\Phone\Digits;
 $request->validate(['test' => '15556667777'], ['test' => new Phone]); // Pass!
 $request->validate(['test' => '+15556667777'], ['test' => new Phone]); // Pass!
 $request->validate(['test' => '+1 (555) 666-7777'], ['test' => new Phone]); // Pass!
+
+// Test for E123
+$request->validate(['test' => '+22 555 666 7777'], ['test' => new E123]); // Pass!
 
 // Test for E164
 $request->validate(['test' => '+15556667777'], ['test' => new E164]); // Pass!
