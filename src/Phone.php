@@ -1,31 +1,29 @@
 <?php
 namespace LVR\Phone;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-class Phone implements Rule
+class Phone implements ValidationRule
 {
     /**
-     * Determine if the validation rule passes.
-     *
-     * @param  string $attribute
-     * @param  mixed  $value
-     *
-     * @return bool
+     * Validation error message
      */
-    public function passes($attribute, $value)
-    {
-        return $this->isPhone($value);
-    }
+    protected string $message = 'Incorrect phone format for :attribute.';
 
     /**
-     * Get the validation error message.
+     * Run the validation rule.
      *
-     * @return string
+     * @param  string  $attribute
+     * @param  mixed  $value
+     * @param  \Closure(string, ?string=): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @return void
      */
-    public function message()
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        return 'Incorrect phone format for :attribute.';
+        if (! $this->isPhone($value)) {
+            $fail($this->message);
+        }
     }
 
     /**

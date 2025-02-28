@@ -1,30 +1,27 @@
 <?php
 namespace LVR\Phone;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
 
 class Digits extends Phone
 {
     /**
-     * Determine if the validation rule passes.
-     *
-     * @param  string $attribute
-     * @param  mixed  $value
-     *s
-     * @return bool
+     * Validation error message
      */
-    public function passes($attribute, $value)
-    {
-        return $this->isDigits($value);
-    }
+    protected string $message = ':attribute must be in digits only phone format';
 
     /**
-     * Get the validation error message.
+     * Run the validation rule.
      *
-     * @return string
+     * @param  string  $attribute
+     * @param  mixed  $value
+     * @param  \Closure(string, ?string=): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @return void
      */
-    public function message()
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        return ':attribute must be in digits only phone format';
+        if (! $this->isDigits($value)) {
+            $fail($this->message);
+        }
     }
 }

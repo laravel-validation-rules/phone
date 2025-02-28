@@ -2,29 +2,27 @@
 
 namespace LVR\Phone;
 
+use Closure;
 
 class E123 extends Phone
 {
     /**
-     * Determine if the validation rule passes.
-     *
-     * @param  string $attribute
-     * @param  mixed  $value
-     *
-     * @return bool
+     * Validation error message
      */
-    public function passes($attribute, $value)
-    {
-        return $this->isE123($value);
-    }
+    protected string $message = ':attribute must be in E.123 phone format';
 
     /**
-     * Get the validation error message.
+     * Run the validation rule.
      *
-     * @return string
+     * @param  string  $attribute
+     * @param  mixed  $value
+     * @param  \Closure(string, ?string=): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @return void
      */
-    public function message()
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        return ':attribute must be in E.123 phone format';
+        if (! $this->isE123($value)) {
+            $fail($this->message);
+        }
     }
 }
