@@ -40,5 +40,5 @@
         "phpunit/phpunit": "^6.3|^9.0|^10.5",
         "orchestra/testbench": "^3.5|^5.0|^7.0|^9.0"
     },
-    "suggest": []
+    "suggest": {}
 }
