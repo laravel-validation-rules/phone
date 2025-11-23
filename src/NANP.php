@@ -1,30 +1,27 @@
 <?php
 namespace LVR\Phone;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
 
 class NANP extends Phone
 {
     /**
-     * Determine if the validation rule passes.
-     *
-     * @param  string $attribute
-     * @param  mixed  $value
-     *s
-     * @return bool
+     * Validation error message
      */
-    public function passes($attribute, $value)
-    {
-        return $this->isNANP($value);
-    }
+    protected string $message = ':attribute must be in the NANP phone format';
 
     /**
-     * Get the validation error message.
+     * Run the validation rule.
      *
-     * @return string
+     * @param  string  $attribute
+     * @param  mixed  $value
+     * @param  \Closure(string, ?string=): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @return void
      */
-    public function message()
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        return ':attribute must be in the NANP phone format';
+        if (! $this->isNANP($value)) {
+            $fail($this->message);
+        }
     }
 }
