@@ -58,7 +58,13 @@ class Phone implements ValidationRule
      */
     protected function isE123($value)
     {
-        return preg_match('/^(?:\((\+?\d+)?\)|\+?\d+) ?\d*(-?\d{2,3} ?){0,4}$/', $value) === 1;
+        if (preg_match('/^(?:\(\+?\d+\)|\+?\d+) ?\d*(-?\d{2,3} ?){0,4}$/', $value) !== 1) {
+            return false;
+        }
+
+        // E.164 limits numbers to 15 digits; fewer than 7 is not a usable phone number
+        $digits = preg_match_all('/\d/', $value);
+        return $digits >= 7 && $digits <= 15;
     }
 
     /**
