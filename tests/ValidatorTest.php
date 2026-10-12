@@ -83,6 +83,27 @@ class ValidatorTest extends TestCase
         $this->assertEquals(false, $this->validate('+zabcdefghij', new NANP));
     }
 
+    public function testValidatorRejectsNonStringValues()
+    {
+        foreach ([new Phone, new Digits, new E123, new E164, new NANP] as $rule) {
+            $this->assertEquals(false, $this->validate(['5556667777'], $rule));
+            $this->assertEquals(false, $this->validate(true, $rule));
+            $this->assertEquals(false, $this->validate(5556667777.0, $rule));
+
+            $failed = false;
+            $rule->validate('attr', null, function () use (&$failed) {
+                $failed = true;
+            });
+            $this->assertEquals(true, $failed);
+        }
+    }
+
+    public function testValidatorAcceptsIntegerValues()
+    {
+        $this->assertEquals(true, $this->validate(5556667777, new Phone));
+        $this->assertEquals(true, $this->validate(15556667777, new Digits));
+    }
+
     public function testValidatorErrorMessage()
     {
         $validator = Validator::make(['attr' => '+1555 ex 1234'], ['attr' => new Phone]);
