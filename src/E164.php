@@ -20,7 +20,7 @@ class E164 extends Phone
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (! $this->isE164($value)) {
+        if (! $this->isCheckable($value) || ! $this->isE164((string) $value)) {
             $fail($this->message);
         }
     }

@@ -21,9 +21,20 @@ class Phone implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (! $this->isPhone($value)) {
+        if (! $this->isCheckable($value) || ! $this->isPhone((string) $value)) {
             $fail($this->message);
         }
+    }
+
+    /**
+     * Only strings and integers can be checked as a phone number;
+     * anything else (arrays, booleans, null, objects...) fails validation
+     * @param  mixed  $value
+     * @return bool
+     */
+    protected function isCheckable($value)
+    {
+        return is_string($value) || is_int($value);
     }
 
     /**
@@ -58,7 +69,13 @@ class Phone implements ValidationRule
      */
     protected function isE123($value)
     {
-        return preg_match('/^(?:\((\+?\d+)?\)|\+?\d+) ?\d*(-?\d{2,3} ?){0,4}\z/', $value) === 1;
+        if (preg_match('/^(?:\(\+?\d+\)|\+?\d+) ?\d*(-?\d{2,3} ?){0,4}\z/', $value) !== 1) {
+            return false;
+        }
+
+        // E.164 limits numbers to 15 digits; fewer than 7 is not a usable phone number
+        $digits = preg_match_all('/\d/', $value);
+        return $digits >= 7 && $digits <= 15;
     }
 
     /**

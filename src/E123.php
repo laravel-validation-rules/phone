@@ -21,7 +21,7 @@ class E123 extends Phone
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (! $this->isE123($value)) {
+        if (! $this->isCheckable($value) || ! $this->isE123((string) $value)) {
             $fail($this->message);
         }
     }
