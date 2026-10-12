@@ -39,6 +39,20 @@ class ValidatorTest extends TestCase
         $this->assertEquals(true, $this->validate('(022607) 555 1234', new E123));
         $this->assertEquals(true, $this->validate('+22 555 555 1234', new E123));
         $this->assertEquals(false, $this->validate('+22 555 555 1234 ext 567', new E123));
+        $this->assertEquals(true, $this->validate('555 1234', new E123));
+        $this->assertEquals(true, $this->validate('+15556667777', new E123));
+        $this->assertEquals(false, $this->validate('1', new E123));
+        $this->assertEquals(false, $this->validate('123', new E123));
+        $this->assertEquals(false, $this->validate('()', new E123));
+        $this->assertEquals(false, $this->validate('() 555 1234', new E123));
+        $this->assertEquals(false, $this->validate('+1234 5678 9012 3456', new E123));
+    }
+
+    public function testValidatorPhoneRejectsTooShortNumbers()
+    {
+        $this->assertEquals(false, $this->validate('1', new Phone));
+        $this->assertEquals(false, $this->validate('123', new Phone));
+        $this->assertEquals(false, $this->validate('()', new Phone));
     }
 
     public function testValidatorPhoneE164()
