@@ -58,7 +58,7 @@ class Phone implements ValidationRule
      */
     protected function isE123($value)
     {
-        return preg_match('/^(?:\((\+?\d+)?\)|\+?\d+) ?\d*(-?\d{2,3} ?){0,4}$/', $value) === 1;
+        return preg_match('/^(?:\((\+?\d+)?\)|\+?\d+) ?\d*(-?\d{2,3} ?){0,4}\z/', $value) === 1;
     }
 
     /**
@@ -85,7 +85,7 @@ class Phone implements ValidationRule
     protected function isNANP($value)
     {
         $conditions = [];
-        $conditions[] = preg_match("/^(?:\+1|1)?\s?-?\(?\d{3}\)?(\s|-)?\d{3}-\d{4}$/i", $value) > 0;
+        $conditions[] = preg_match("/^(?:\+1|1)?\s?-?\(?\d{3}\)?(\s|-)?\d{3}-\d{4}\z/i", $value) > 0;
         return (bool) array_product($conditions);
     }
 }
