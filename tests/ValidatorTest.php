@@ -97,6 +97,15 @@ class ValidatorTest extends TestCase
         $this->assertEquals(false, $this->validate('+zabcdefghij', new NANP));
     }
 
+    public function testValidatorRejectsTrailingNewline()
+    {
+        $this->assertEquals(false, $this->validate("(607) 555 1234\n", new E123));
+        $this->assertEquals(false, $this->validate("+22 555 555 1234\n", new E123));
+        $this->assertEquals(false, $this->validate("555-555-5555\n", new NANP));
+        $this->assertEquals(false, $this->validate("(555) 666-7777\n", new NANP));
+        $this->assertEquals(false, $this->validate("(555) 666-7777\n", new Phone));
+    }
+
     public function testValidatorRejectsNonStringValues()
     {
         foreach ([new Phone, new Digits, new E123, new E164, new NANP] as $rule) {
