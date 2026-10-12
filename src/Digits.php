@@ -20,7 +20,7 @@ class Digits extends Phone
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (! $this->isDigits($value)) {
+        if (! $this->isCheckable($value) || ! $this->isDigits((string) $value)) {
             $fail($this->message);
         }
     }
