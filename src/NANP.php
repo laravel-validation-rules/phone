@@ -20,7 +20,7 @@ class NANP extends Phone
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (! $this->isNANP($value)) {
+        if (! $this->isCheckable($value) || ! $this->isNANP((string) $value)) {
             $fail($this->message);
         }
     }
