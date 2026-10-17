@@ -21,9 +21,20 @@ class Phone implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (! $this->isCheckable($value) || ! $this->isPhone((string) $value)) {
+        if (! $this->isCheckable($value) || ! $this->passes((string) $value)) {
             $fail($this->message);
         }
+    }
+
+    /**
+     * Checks the value against the format this rule accepts;
+     * subclasses override this to check a single format
+     * @param  string  $value The phone number to check
+     * @return bool
+     */
+    protected function passes(string $value): bool
+    {
+        return $this->isPhone($value);
     }
 
     /**

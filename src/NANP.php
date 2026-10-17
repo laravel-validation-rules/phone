@@ -1,8 +1,6 @@
 <?php
 namespace LVR\Phone;
 
-use Closure;
-
 class NANP extends Phone
 {
     /**
@@ -11,17 +9,12 @@ class NANP extends Phone
     protected string $message = ':attribute must be in the NANP phone format';
 
     /**
-     * Run the validation rule.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @param  \Closure(string, ?string=): \Illuminate\Translation\PotentiallyTranslatedString  $fail
-     * @return void
+     * Checks the value against the NANP format
+     * @param  string  $value The phone number to check
+     * @return bool
      */
-    public function validate(string $attribute, mixed $value, Closure $fail): void
+    protected function passes(string $value): bool
     {
-        if (! $this->isCheckable($value) || ! $this->isNANP((string) $value)) {
-            $fail($this->message);
-        }
+        return $this->isNANP($value);
     }
 }
